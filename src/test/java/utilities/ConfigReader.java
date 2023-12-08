@@ -7,6 +7,7 @@ import java.util.Properties;
 public class ConfigReader
 {
     static Properties properties;
+
     static {// static blok herseyden once calisir
         String dosyaYolu= "configuration.properties";
         try {

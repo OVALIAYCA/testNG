@@ -10,7 +10,8 @@ import java.util.List;
 
 public class TestOtomasyonuPage
 {
-    public TestOtomasyonuPage(){
+    public TestOtomasyonuPage()
+    {
         PageFactory.initElements(Driver.getDriver(),this);
     }
     @FindBy(id = "global-search")

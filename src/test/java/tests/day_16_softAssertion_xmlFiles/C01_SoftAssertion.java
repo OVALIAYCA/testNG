@@ -1,36 +1,38 @@
-package tests.day15_testNG_Configuration_DriverKullanimi;
+package tests.day_16_softAssertion_xmlFiles;
 
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.TestOtomasyonuPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
-public class C06_HardAssertion
+public class C01_SoftAssertion
 {
     @Test
-    public void hardAssertionTesti()
+    public void softAssertionTest()
     {
-
         // testotomasyonu anasayfaya gidin
         Driver.getDriver().get(ConfigReader.getProperty("toUrl"));
+
+        SoftAssert softAssert = new SoftAssert();
 
         // Title'in Test icerdigini test edin
         String expectedTitleIcerik = "Test";
         String actualTitle = Driver.getDriver().getTitle();
-        Assert.assertTrue(actualTitle.contains(expectedTitleIcerik));
+        softAssert.assertTrue(actualTitle.contains(expectedTitleIcerik),"Title Test içermiyor");
+
 
         // url'in https://www.testotomasyonu.com oldugunu test edin
-
         String expectedUrl = "https://www.testotomasyonu.com/";
         String actualUrl = Driver.getDriver().getCurrentUrl();
-        Assert.assertEquals(actualUrl,expectedUrl);
+        softAssert.assertEquals(actualUrl,expectedUrl,"Url beklenenden farklı");
 
         // arama kutusunun kullanilabilir durumda oldugunu test edin
         TestOtomasyonuPage testOtomasyonuPage = new TestOtomasyonuPage();
-        Assert.assertTrue(testOtomasyonuPage.aramaKutusu.isEnabled());
+        softAssert.assertTrue(testOtomasyonuPage.aramaKutusu.isEnabled(),"Arama Kutusu kullanılamıyor");
 
         // belirlenmis aranacak kelimeyi aratip urun bulundugunu test edin
         testOtomasyonuPage
@@ -38,20 +40,24 @@ public class C06_HardAssertion
                 .sendKeys(ConfigReader.getProperty("toAranacakKelime") + Keys.ENTER);
 
         int bulunanSonucSayisi = testOtomasyonuPage.bulunanUrunElementleriList.size();
-        Assert.assertTrue(bulunanSonucSayisi>0);
+        softAssert.assertTrue(bulunanSonucSayisi>0,"Aranacak kelime için ürün bulunamadı");
 
-        // Nutella aratip, urun bulundugunu test edin
+
+        // Nutella aratip, urun bulunamadığını test edin
         ReusableMethods.bekle(2);
         testOtomasyonuPage.aramaKutusu.clear();
         testOtomasyonuPage.aramaKutusu.sendKeys("Nutella" + Keys.ENTER);
-        ReusableMethods.bekle(2);
         bulunanSonucSayisi = testOtomasyonuPage.bulunanUrunElementleriList.size();
-        Assert.assertTrue(bulunanSonucSayisi>0);
+        softAssert.assertTrue(bulunanSonucSayisi==0,"Nutella bulundu");
+
+        softAssert.assertAll();
+        //bu basamak önemli.
 
         // sayfayi kapatin
-
         Driver.closeDriver();
+
+
+
 
     }
 }
-
