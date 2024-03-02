@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="İstenen Package çalıştırma">
+
+    <test name="15.gün Package">
+
+        <packages>
+
+            <package name="tests.day15_testNG_Configuration_DriverKullanimi"></package>
+
+        </packages>
+
+
+    </test>
+
+
+</suite>

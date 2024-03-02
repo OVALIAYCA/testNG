@@ -1,4 +1,4 @@
-package tests.day_16_softAssertion_xmlFiles;
+package tests.day16_softAssertion_xmlFiles;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;

@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<!--
+.xml dosyaları
+testNG de toplu çalıştırma için kullanılır.
+
+
+-->
+
+<suite name="Belirlenen classları çalıştırma">
+
+    <test name="Login testleri">
+
+        <classes>
+            <class name="tests.day15_testNG_Configuration_DriverKullanimi.C03_PozitifLoginTesti"></class>
+            <class name="tests.day16_softAssertion_xmlFiles.C02_SoftAssertion"></class>
+
+
+        </classes>
+
+
+    </test>
+
+
+</suite>
